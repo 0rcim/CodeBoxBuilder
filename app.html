@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>hl-From-VScode</title>
+    <link rel="stylesheet" href="./src/style/app.css">
+    <link rel="stylesheet" href="./codebox.css">
+    <link rel="stylesheet" href="./icons.css">
+</head>
+<body>
+    <div class="main">
+        <div class="card card1" style="display: block;">
+            <div class="header">
+                <h1>等待粘贴操作</h1>
+            </div>
+            <div class="body">
+                <p>将从 Code 编辑器中复制的高亮代码，在页面内或者在下方输入框中，按下 Ctrl + V 等方式粘贴代码来激活后续步骤。</p>
+                <p>
+                    <div class="input-box">
+                        <input name="paste-here" type="text" class="form-control">
+                    </div>
+                </p>
+            </div>
+        </div>
+        <div class="card card2" style="display: none;">
+            <div class="header">
+                <h1>最后一步</h1>
+            </div>
+            <div class="body">
+                <p>以下为可选配置，主要方便自定义化代码高亮。</p>
+                <form id="fm">
+                    <div class="input-box">
+                        <label for="name">文件名</label>
+                        <input id="name" name="fName" type="text" class="form-control" placeholder="不显示标题栏">
+                        <label for="box-height">代码框限制高度</label>
+                        <input id="box-height" name="boxHt" type="text" class="form-control" placeholder="默认200px，单位px，为负，则自动适应">
+                        <span>
+                            <input type="checkbox" name="copyBtn" id="copy-button" checked>                        
+                            <label for="copy-button">添加复制按钮</label>
+                        </span>
+                        <span>
+                            <input type="checkbox" name="addAllStyle" id="add-all-style" checked>                        
+                            <label for="add-all-style">添加所有字体样式（斜体、粗体）</label>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="footer">
+                <button id="submit">确定</button>
+            </div>
+        </div>
+        <div class="card card3" style="display: none;">
+            <div class="header">
+                <h1>成功</h1>
+            </div>
+            <div class="body">
+                <p>首次运行，需要将如下CSS代码和程序根目录下的「codebox.css」「icons.css」复制到自己博客的页面定制CSS代码输入框内，「codebox.js」复制到博客定制js代码框内。</p>
+                <div class="input-box">
+                    <textarea name="source_css" id="source_css"></textarea>
+                </div>
+                <p>之后复制如下HTML即会在博文中正常显示或生效</p>
+                <div class="input-box">
+                    <textarea name="source_html" id="source_html"></textarea>
+                </div>
+            </div>
+            <div class="footer" style="padding-top: 1rem;">
+                <button id="ok">预览</button>
+            </div>
+        </div>
+        <div class="code--container" style="display: none;">
+            <div class="code--box">
+                <div class="code--title">
+                    <div class="code--stamp">
+                        <span class="code---document"></span>
+                    </div>
+                    <div class="code--name">
+                        <span>xxx.js</span>
+                    </div>
+                    <div class="code--action">
+                        <div class="code--copy">
+                            <span>COPY</span>
+                        </div>
+                        <div class="code--ex_sh">
+                            <span>EXPAND</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="code--content" title="Shift + scroll，横向滚动">
+                    <div class="code--numbers_list">
+                        <table>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="code--lines">
+                        <table>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="code--title">
+                    <div class="code--stamp">
+                        <span></span>
+                    </div>
+                    <div class="code--name">
+                        <span>xxx.js</span>
+                    </div>
+                    <div class="code--action">
+                        <div class="code--copy">
+                            <span>COPY</span>
+                        </div>
+                        <div class="code--ex_sh">
+                            <span>EXPAND</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./src/js/app.js"></script>
+<script src="./codebox.js"></script>
+</html>

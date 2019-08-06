@@ -1,0 +1,100 @@
+.code--container{
+    min-height: 200px; width: calc(100% - 4rem);
+}
+.code--box{
+    width: 100%;
+    border-radius: .5rem;
+    overflow: hidden;
+    background-color: #1e1e1e
+}
+.code--title{
+    display: flex; justify-content: flex-start; align-items: center;
+    width: calc(100% - 1rem); height: 2.25rem;
+    padding: 0 .5rem;
+    border-radius: .5rem; background-color: rgba(0, 0, 0, .08)
+}
+.code--box .code--title:first-child{
+    border-bottom-right-radius: 0;
+    margin-bottom: .5rem;
+}
+.code--box .code--title:last-child{
+    border-top-right-radius: 0;
+    margin-top: .5rem;
+}
+.code--stamp{
+    display: flex; align-items: center; justify-content: center;
+    height: 2.25rem;
+}
+.code--stamp > span{
+    display: flex; 
+    width: 1.5rem; height: 1.5rem; 
+    border-radius: 50%; 
+    background-size: 1rem 1rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, .12);
+    border: 1px solid rgba(255, 255, 255, .25);
+}
+.code--name{
+    display: flex; align-items: center;
+    width: calc(100% - 10rem); height: 100%;
+}
+.code--name span{
+    width: calc(100% - .5rem); overflow: hidden; text-overflow: ellipsis;
+    padding-left: .5rem;
+    color: #ededed;
+}
+.code--action{
+    display: flex; justify-content: flex-end; align-items: center;
+    width: 9rem; height: 2.25rem;
+}
+.code--copy{
+    display: flex; justify-content: center; align-items: center;
+    height: 2.25rem;
+    padding: 0 .25rem;
+    letter-spacing: .05rem;
+    white-space: nowrap;
+    background-color: #666;
+    cursor: pointer;
+    user-select: none;
+}
+.code--ex_sh{
+    display: flex; justify-content: center; align-items: center;
+    height: 2.25rem;
+    padding: 0 .25rem;
+    letter-spacing: .05rem;
+    white-space: nowrap;
+    background-color: #0855fc;
+    cursor: pointer;
+    user-select: none;
+    margin-left: .25rem;
+}
+.code--copy:active, .code--ex_sh:active{
+    opacity: .75;
+}
+.code--content{
+    display: flex;
+    width: 100%; max-height: calc(100% - 5rem); max-height: 200px;
+    overflow-y: auto;
+}
+.code--numbers_list{
+    width: 5rem;
+}
+.code--numbers_list table{
+    width: 100%; 
+    padding-right: .5rem;
+    text-align: right;
+    color: #fff;
+    user-select: none;
+}
+.code--lines{
+    width: calc(100% - 5rem); height: fit-content;
+    overflow-x: auto;
+}
+.code--lines > table > tbody > tr > td > span:first-child{
+    white-space: pre;
+}
+.code--lines table{
+    padding-right: 1.5rem;
+    white-space: nowrap;
+}
