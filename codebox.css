@@ -1,3 +1,31 @@
+/* recovery */
+.code--box .code--content .code--numbers_list table, .code--box .code--content .code--lines table{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+.code--box .code--content .code--numbers_list table tbody, .code--box .code--content .code--lines table tbody{
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.code--box .code--content .code--numbers_list table tbody tr, .code--box .code--content .code--lines table tbody tr{
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.code--box .code--content .code--numbers_list table tbody tr td, .code--box .code--content .code--lines table tbody tr td{
+    display: table-cell;
+    vertical-align: inherit;
+}
+#cnblogs_post_body table{
+    border: 0;
+    border-collapse: separate;
+}
+#cnblogs_post_body td{
+    padding: 1px!important; border: 0!important;
+}
 .code--container{
     min-height: 200px; width: calc(100% - 4rem);
 }
@@ -10,7 +38,7 @@
 .code--title{
     display: flex; justify-content: flex-start; align-items: center;
     width: calc(100% - 1rem); height: 2.25rem;
-    padding: 0 .5rem;
+    padding: 0 .5rem; color: #fff; font-size: 1rem; line-height: 1.5rem;
     border-radius: .5rem; background-color: rgba(0, 0, 0, .08)
 }
 .code--box .code--title:first-child{
@@ -90,6 +118,10 @@
 .code--lines{
     width: calc(100% - 5rem); height: fit-content;
     overflow-x: auto;
+}
+#cnblogs_post_body table{
+    display: table!important;
+    overflow-x: auto!important;
 }
 .code--lines > table > tbody > tr > td > span:first-child{
     white-space: pre;

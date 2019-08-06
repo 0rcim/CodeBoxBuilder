@@ -7,7 +7,7 @@ let addExpandBtnEvents = function () {
         btns[i].dataset.maxHeight = btns[i].style.maxHeight; cn[i].bool = true;
         btns[i].onclick = function () {
             cn[i].bool = !cn[i].bool; cn[i].style.maxHeight = cn[i].bool ? this.dataset.maxHeight : "none";
-            for (let j=0, m=btns.length; j<m; j++) btns[j].innerText = st[cn[i].bool];
+            for (let j=0, m=btns.length; j<m; j++) btns[j].querySelector("span").innerText = st[cn[i].bool];
         }
     }
 };
@@ -15,13 +15,13 @@ let addCopyBtnEvents = function () {
     let btns = document.querySelectorAll(".code--copy");
     for (let i=0, l=btns.length; i<l; i++) {
         btns[i].onclick = function () {
-            let cn = this.parentNode.parentNode.parentNode.querySelector(".code--content");
+            let cn = this.parentNode.parentNode.parentNode.querySelector(".code--lines");
             selectText(cn);
             document.execCommand("Copy");
         }
     }
 };
-function selectText (text){
+function selectText (text) {
     var bType = BrowserType();
     if(bType.isSafari){ // safari
         var selection = window.getSelection();
@@ -38,7 +38,7 @@ function selectText (text){
         range.select();  
     }
 };
-function BrowserType(){  
+function BrowserType () {  
     var userAgent = navigator.userAgent; //取得浏览器的 userAgent 字符串
     var typeis = {};
     typeis.isOpera = userAgent.indexOf("Opera") > -1; //判断是否 Opera 浏览器  
@@ -49,3 +49,14 @@ function BrowserType(){
     typeis.isChrome = userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("Safari") > -1; //判断 Chrome 浏览器
     return typeis;
 };
+function solveDatasetCSS () {
+    let pageCodeBoxes = document.querySelectorAll(".code--box");
+    for (let i=0, l=pageCodeBoxes.length; i<l; i++) {
+        let c = document.createElement("style");
+        let css = pageCodeBoxes[i].dataset.css;
+        // 类选择器前加上 code--box id 选择器，限定 css 作用范围
+        let n_css = css.replace(/([^0-9]?)(\.[^0-9]*--)/g, `$1#${pageCodeBoxes[i].id}\ $2`);
+        c.innerText = n_css.replace(`#${pageCodeBoxes[i].id} .code--box`, ".code--box");
+        document.head.appendChild(c);
+    }
+}

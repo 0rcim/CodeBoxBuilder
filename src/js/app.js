@@ -39,6 +39,7 @@ window.onload = () => {
     document.onpaste = (e) => {
         var cb_str = e.clipboardData.getData('text\/html') || e.clipboardData.getData('text\/plain');
         var handled = cb_handler(cb_str);
+        document.querySelector(".code--box").id = `code--id--${new Date().valueOf()}`;
         window.handled = handled;
         console.log(handled);
         let syntaxColor = {};
@@ -54,6 +55,7 @@ window.onload = () => {
         handled.globalStyle["white-space"] = "no-wrap";
         handled.globalStyle["font-size"] = "15px";
         handled.globalStyle["line-height"] = "25px";
+        handled.globalStyle["font-family"] = " monospace, " + handled.globalStyle["font-family"];
         var style = `.code--content{${stylefy(handled.globalStyle)}}.code--box{background-color:${handled.globalStyle["background-color"]}}`;
         let cssGroup = {};
         Object.keys(syntaxColor).forEach((item, index) => {
@@ -81,7 +83,7 @@ window.onload = () => {
         // console.log(Object.keys(syntaxColor))
         // console.log(style)
         addExpandBtnEvents();
-        addCopyBtnEvents()
+        addCopyBtnEvents();
     }
 };
 var td = (txt_arr) => {
@@ -143,10 +145,11 @@ var cb_handler = function (d) {
         tmp["hl_group"] = ss_arr.map(i => {
             let a = i.match(/>([\s|\S]*)<\/span>/)[1];
             strs.push(a);
+            // console.log(a)
             // console.log(i.match(/style="(.*)"/)[1], i.match(/style="(.*)">/));
             return {
                 "style": cssfy(i.match(/style="(.*)">/)[1]),
-                "txt": a
+                "txt": a.replace(/\ /g, "&nbsp;")
             }
         });
         tmp["plain_txt"] = strs.join("");
@@ -224,6 +227,8 @@ document.getElementById("submit").onclick = () => {
         });
         for (let x in newCss) Object.keys(newCss[x]).length && (document.getElementById("resStyle").innerText += `.${window.cssGroup[x]}{${stylefy(newCss[x])}}`);
     }
+    document.querySelector(".code--box").dataset.css = document.getElementById("resStyle").innerText;
     document.getElementById("source_html").value = document.querySelector(".code--container").innerHTML;
-    document.getElementById("source_css").value = document.getElementById("resStyle").innerText;
+    
+    solveDatasetCSS();
 }
