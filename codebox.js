@@ -7,7 +7,10 @@ let addExpandBtnEvents = function () {
         btns[i].dataset.maxHeight = btns[i].style.maxHeight; cn[i].bool = true;
         btns[i].onclick = function () {
             cn[i].bool = !cn[i].bool; cn[i].style.maxHeight = cn[i].bool ? this.dataset.maxHeight : "none";
-            for (let j=0, m=btns.length; j<m; j++) btns[j].querySelector("span").innerText = st[cn[i].bool];
+            for (let j=0, m=btns.length; j<m; j++) {
+                 cn[i].parentNode.querySelectorAll(".code--ex_sh span")[0].innerText = st[cn[i].bool.toString()];
+                 cn[i].parentNode.querySelectorAll(".code--ex_sh span")[1].innerText = st[cn[i].bool.toString()];
+            }
         }
     }
 };
@@ -50,13 +53,12 @@ function BrowserType () {
     return typeis;
 };
 function solveDatasetCSS () {
-    let pageCodeBoxes = document.querySelectorAll(".code--box");
-    for (let i=0, l=pageCodeBoxes.length; i<l; i++) {
-        let c = document.createElement("style");
-        let css = pageCodeBoxes[i].dataset.css;
-        // 类选择器前加上 code--box id 选择器，限定 css 作用范围
-        let n_css = css.replace(/([^0-9]?)(\.[^0-9]*--)/g, `$1#${pageCodeBoxes[i].id}\ $2`);
-        c.innerText = n_css.replace(`#${pageCodeBoxes[i].id} .code--box`, ".code--box");
+    var pageCodeBoxes = document.querySelectorAll(".code--box");
+    for (var i=0, l=pageCodeBoxes.length; i<l; i++) {
+        var c = document.createElement("style");
+        var css = pageCodeBoxes[i].getAttribute("data-css");
+        var n_css = css.replace(/([^0-9]?)(\.[^0-9]*--)/g, "$1#"+ pageCodeBoxes[i].id +" $2");
+        c.innerText = n_css.replace("#" + pageCodeBoxes[i].id + " .code--box", ".code--box");
         document.head.appendChild(c);
     }
 }
