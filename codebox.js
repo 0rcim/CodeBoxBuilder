@@ -1,24 +1,30 @@
-let addExpandBtnEvents = function () {
-    let btns = document.querySelectorAll(".code--ex_sh");
-    const st = {"true": "EXPAND", "false": "SHRINK"};
-    for (let i=0, l=btns.length; i<l; i++) {
-        let cn = {};
-        cn[i] = btns[i].parentNode.parentNode.parentNode.querySelector(".code--content");
-        btns[i].dataset.maxHeight = btns[i].style.maxHeight; cn[i].bool = true;
-        btns[i].onclick = function () {
-            cn[i].bool = !cn[i].bool; cn[i].style.maxHeight = cn[i].bool ? this.dataset.maxHeight : "none";
-            for (let j=0, m=btns.length; j<m; j++) {
-                 cn[i].parentNode.querySelectorAll(".code--ex_sh span")[0].innerText = st[cn[i].bool.toString()];
-                 cn[i].parentNode.querySelectorAll(".code--ex_sh span")[1].innerText = st[cn[i].bool.toString()];
+function addExpandBtnEvents () {
+    var btns = document.querySelectorAll(".code--ex_sh");
+    var st = {"true": "EXPAND", "false": "SHRINK"};
+    var codeBoxes = document.querySelectorAll(".code--box");
+    for (var i=0, l=codeBoxes.length; i<l; i++) {
+        codeBoxes[i].setAttribute("expanded", true);
+        var btns = codeBoxes[i].querySelectorAll(".code--ex_sh");
+        (function (idx) {
+            for (var j=0, m=btns.length; j<m; j++) {
+                btns[j].setAttribute("data-max-height", codeBoxes[i].querySelector(".code--content").style.maxHeight) || "200px";
+                btns[j].onclick = function () {
+                    var mh = this.getAttribute("data-max-height");
+                    var bool = codeBoxes[idx].getAttribute("expaned") === "true";
+                    codeBoxes[idx].querySelectorAll(".code--ex_sh span")[0].innerText = 
+                    codeBoxes[idx].querySelectorAll(".code--ex_sh span")[1].innerText = st[bool];
+                    codeBoxes[idx].querySelector(".code--content").style.maxHeight = bool ? mh : "none";
+                    codeBoxes[idx].setAttribute("expaned", !bool);
+                }
             }
-        }
+        })(i)
     }
 };
-let addCopyBtnEvents = function () {
-    let btns = document.querySelectorAll(".code--copy");
-    for (let i=0, l=btns.length; i<l; i++) {
+function addCopyBtnEvents () {
+    var btns = document.querySelectorAll(".code--copy");
+    for (var i=0, l=btns.length; i<l; i++) {
         btns[i].onclick = function () {
-            let cn = this.parentNode.parentNode.parentNode.querySelector(".code--lines");
+            var cn = this.parentNode.parentNode.parentNode.querySelector(".code--lines");
             selectText(cn);
             document.execCommand("Copy");
         }
@@ -45,7 +51,7 @@ function BrowserType () {
     var userAgent = navigator.userAgent; //取得浏览器的 userAgent 字符串
     var typeis = {};
     typeis.isOpera = userAgent.indexOf("Opera") > -1; //判断是否 Opera 浏览器  
-    typeis.isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否 IE 浏览器  
+    typeis.isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !typeis.isOpera; //判断是否 IE 浏览器  
     typeis.isEdge = userAgent.indexOf("Windows NT 6.1; Trident/7.0;") > -1 && !isIE; //判断是否 IE 的 Edge 浏览器  
     typeis.isFF = userAgent.indexOf("Firefox") > -1; //判断是否 Firefox 浏览器  
     typeis.isSafari = userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") == -1; //判断是否 Safari 浏览器 

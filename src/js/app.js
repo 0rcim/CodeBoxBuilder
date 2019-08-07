@@ -82,7 +82,6 @@ window.onload = () => {
         };
         // console.log(Object.keys(syntaxColor))
         // console.log(style)
-        addExpandBtnEvents();
         addCopyBtnEvents();
     }
 };
@@ -231,4 +230,5 @@ document.getElementById("submit").onclick = () => {
     document.getElementById("source_html").value = document.querySelector(".code--container").innerHTML;
     
     solveDatasetCSS();
+    addExpandBtnEvents();
 }

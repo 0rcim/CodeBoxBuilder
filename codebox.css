@@ -90,6 +90,7 @@
     display: flex; justify-content: center; align-items: center;
     height: 2.25rem;
     padding: 0 .25rem;
+    margin-right: .5rem;
     letter-spacing: .05rem;
     white-space: nowrap;
     background-color: #0855fc;
@@ -103,6 +104,7 @@
 .code--content{
     display: flex;
     width: 100%; max-height: calc(100% - 5rem); max-height: 200px;
+    color: #a9a9a9;
     overflow-y: auto;
 }
 .code--numbers_list{
