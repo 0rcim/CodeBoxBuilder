@@ -1,4 +1,5 @@
 let icons = {
+    "babelrc": "babel",
     "c": "c",
     "cpp": "cpp",
     "cs": "csharp",
@@ -12,6 +13,8 @@ let icons = {
     "package.json": "nodejs",
     "php": "php",
     "py": "python",
+    "jsx": "react",
+    "tsx": "react_ts",
     "scss": "scss",
     "swift": "swift",
     "ts": "typescript",
