@@ -126,6 +126,7 @@ var cb_handler = function (d) {
     // [\r\n]* => 匹配任意次数的回车换行
     let handle = {};
     let data = d.replace(/<html>[\r\n]*<body>[\r\n]*<\!--StartFragment-->([\s|\S]*)<\!--EndFragment-->[\r\n]*<\/body>[\r\n]*<\/html>/, "$1");
+    data = data.replace(/<br>/g, '<div><span style="">&nbsp;</span></div>');
     // 编辑器全局的 style
     var gs = data.match(/<div style="(.*)"><div>/);
     // 如果粘贴源文本格式不符（并非来自 VS）
